@@ -3,22 +3,29 @@
 
 class MyVector {
 public:
-    MyVector(int capacity = 1);
-    ~MyVector();
+    MyVector(int capacity = 10);
+    // Copy constructor
     MyVector(const MyVector& other);
-    int getCapacity() const { return capacity; }
-    void push_back(int value); 
-    int pop_back(void); 
+
+    // Destructor
+    ~MyVector();
+
     void print() const;
-    int& at(int index);
+    void push_back(int val);    // Add the new element at the end
+    int pop_back();             // Removes the last element and returns its value
+    
+    bool empty() const;
+    int getCapacity() const;
+    int& at(int index) const;
 
 private:
-    void allocate_memory(int memory_size);
+    int* elements;      // An array of integers
+    int size;           // The current number of elements
+    int capacity;       // The max number of elements in the array
 
-    int *elements;
-    int size;
-    int capacity;
+    bool full() const;
+
+    void allocateMemory(int memory_size);
 };
-
 
 #endif
